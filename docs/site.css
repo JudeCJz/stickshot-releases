@@ -15,7 +15,7 @@
 /* ---------- top bar ---------- */
 .topbar {
   position: sticky; top: 0; z-index: 50;
-  display: flex; align-items: center; gap: 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
   height: 64px; padding: 0 var(--gutter);
   background: rgba(11, 11, 14, .72);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
@@ -25,13 +25,19 @@
 .topbar.scrolled { border-bottom-color: var(--edge); background: rgba(11, 11, 14, .9); }
 .topbar .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; letter-spacing: .06em; font-size: 15px; }
 .topbar .brand img { width: 32px; height: 32px; border-radius: 9px; }
-.toplinks { display: flex; gap: 26px; margin-left: auto; }
-.toplinks a { text-decoration: none; font-weight: 700; font-size: 14px; color: var(--soft); transition: color .15s; }
-.toplinks a:hover { color: #fff; }
-.topbar .btn { margin-left: 0; }
-@media (max-width: 860px) {
-  .toplinks { display: none; }
-  .topbar .btn { margin-left: auto; }
+.topbar .btn {
+  margin-left: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s;
+}
+.topbar .btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 /* ---------- buttons ---------- */
@@ -90,65 +96,9 @@
 .eyebrow { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--red-hi); }
 .head2 h2 { margin: 0; font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -.01em; line-height: 1.1; }
 
-/* two ways to play */
-.ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; padding-top: 8px !important; }
-.way {
-  display: flex; align-items: center; gap: 18px; padding: 20px 22px;
-  background: var(--card); border: 1px solid var(--edge); border-radius: 20px;
-}
-.way-icon { width: 56px; height: 56px; border-radius: 14px; flex: none; }
-.way-icon-web { display: grid; place-items: center; background: rgba(216, 38, 44, .16); color: #fff; }
-.way-icon-web svg { width: 30px; height: 30px; }
-.way-text { flex: 1; min-width: 0; }
-.way-text h3 { margin: 0 0 4px; font-size: 18px; font-weight: 800; }
-.way-text p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 600; line-height: 1.45; }
-.way .btn { flex: none; }
-@media (max-width: 520px) {
-  .way { flex-wrap: wrap; }
-  .way .btn { width: 100%; justify-content: center; }
-}
-
-/* features */
-.s-features { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
-@media (min-width: 1100px) { .s-features { grid-template-columns: repeat(5, 1fr); } }
-.s-feat {
-  padding: 22px; border-radius: 18px;
-  background: var(--card); border: 1px solid var(--edge);
-  transition: background .2s, transform .2s;
-}
-.s-feat:hover { background: var(--card-hi); transform: translateY(-2px); }
-.s-feat-ic { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 14px; border-radius: 13px; background: rgba(216, 38, 44, .16); }
-.s-feat-ic svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.s-feat h3 { margin: 0 0 6px; font-size: 17px; font-weight: 800; }
-.s-feat p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); font-weight: 600; }
-
 /* the interactive parts keep their look, with the new spacing */
 .site .box-head, .site .sect-head { display: none; }
 .site .bg-wallpaper { display: none; }
-
-/* controls */
-.ctl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
-.ctl { padding: 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--edge); }
-.ctl h3 { margin: 0 0 14px; font-size: 20px; font-weight: 800; }
-.keys { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.keys li { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--soft); }
-.k {
-  display: inline-block; flex: none; white-space: nowrap; min-width: 34px; padding: 4px 10px; border-radius: 8px; text-align: center;
-  font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #fff;
-  background: rgba(255, 255, 255, .09); border: 1px solid rgba(255, 255, 255, .14); border-bottom-width: 3px;
-}
-.keys li .k:last-of-type { margin-right: 6px; }
-.ctl-note { margin: 16px 0 0; font-size: 13px; font-weight: 600; color: var(--muted); }
-
-/* what's new */
-.news { padding: 26px 28px; border-radius: 20px; background: var(--card); border: 1px solid var(--edge); }
-.news-ver { margin-left: 8px; padding: 4px 12px; border-radius: 999px; vertical-align: middle; font-size: 15px; font-weight: 800; letter-spacing: .02em; color: #fff; background: var(--red); }
-.news-ver:empty { display: none; }
-.news-list { margin: 0; padding: 0 0 0 4px; list-style: none; display: grid; gap: 12px; }
-.news-list li { position: relative; padding-left: 22px; font-size: 15px; line-height: 1.55; font-weight: 600; color: var(--soft); }
-.news-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--red-hi); }
-.news-list li b { color: #fff; }
-.news-all { display: inline-block; margin-top: 18px; font-weight: 800; font-size: 14px; text-decoration: none; color: var(--red-hi) !important; }
 
 /* help */
 .faq { display: grid; gap: 10px; }

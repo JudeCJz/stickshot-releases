@@ -1,29 +1,58 @@
-// Stickshot site: the top bar's edge once the page scrolls, and WHAT'S NEW from the latest GitHub release notes.
+// Stickshot site: top bar styling and download button scroll visibility
 (function () {
   var bar = document.getElementById("topbar");
-  if (bar) {
-    var onScroll = function () { bar.classList.toggle("scrolled", window.scrollY > 8); };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+  var topbarBtn = bar ? bar.querySelector(".js-download") : null;
+  var heroBtn = document.querySelector(".s-hero .js-download");
+  var endBtn = document.querySelector(".cta-end .js-download");
+
+  function update() {
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (bar) {
+      bar.classList.toggle("scrolled", scrollY > 8);
+    }
+
+    if (topbarBtn) {
+      var barHeight = bar ? bar.offsetHeight : 0;
+      var heroVisible = false;
+      if (heroBtn) {
+        var heroRect = heroBtn.getBoundingClientRect();
+        // The big hero button hides once its bottom edge scrolls at or above the sticky topbar
+        heroVisible = heroRect.bottom > barHeight && heroRect.top < window.innerHeight;
+      }
+
+      var endVisible = false;
+      if (endBtn) {
+        var endRect = endBtn.getBoundingClientRect();
+        // The bottom CTA button is visible if any part of it is in the viewport
+        endVisible = endRect.top < window.innerHeight && endRect.bottom > barHeight;
+      }
+
+      // Show topbar button only after the hero button has hidden completely,
+      // and hide it if the bottom CTA button comes into view
+      // so there is never more than 1 download button visible on screen at a time.
+      var showTopbarBtn = !heroVisible && !endVisible;
+      topbarBtn.classList.toggle("is-visible", showTopbarBtn);
+    }
   }
 
-  var list = document.getElementById("news-list");
-  if (!list) return;
-  var esc = function (s) {
-    return s.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
-  };
-  fetch("https://api.github.com/repos/JudeCJz/stickshot-releases/releases/latest")
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (rel) {
-      var lines = String(rel.body || "").split(/\r?\n/)
-        .map(function (l) { return l.trim(); })
-        .filter(function (l) { return /^[-*] /.test(l) && !/never released/i.test(l); })
-        .map(function (l) { return l.slice(2); });
-      if (!lines.length) return;
-      list.innerHTML = lines.slice(0, 9).map(function (l) {
-        var t = esc(l).replace(/^(NEW|Fixed):/, "<b>$1:</b>");
-        return "<li>" + t + "</li>";
-      }).join("");
-    })
-    .catch(function () {});
+  var ticking = false;
+  function onScrollOrResize() {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        update();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize, { passive: true });
+  window.addEventListener("load", update);
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", update);
+  } else {
+    update();
+  }
 })();
