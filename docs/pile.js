@@ -555,9 +555,12 @@
       if (!rel) return;
       var apk = (rel.assets || []).filter(function (a) { return /\.apk$/i.test(a.name); })[0];
       document.querySelectorAll(".js-ver").forEach(function (v) { v.textContent = rel.tag_name; });
-      if (!apk) return;
-      document.querySelectorAll(".js-download").forEach(function (a) { a.href = apk.browser_download_url; });
-      document.querySelectorAll(".js-size").forEach(function (s) { s.textContent = " · " + Math.round(apk.size / 1048576) + " MB"; });
+      var exe = (rel.assets || []).filter(function (a) { return /\.exe$/i.test(a.name); })[0];
+      if (apk) document.querySelectorAll(".js-download").forEach(function (a) { a.href = apk.browser_download_url; });
+      if (exe) document.querySelectorAll(".js-download-win").forEach(function (a) { a.href = exe.browser_download_url; });
+      // (the top bar's one button: the installer on a Windows computer, else the APK)
+      var nav = document.querySelector(".nav-dl");
+      if (nav && exe && /Windows/i.test(navigator.userAgent)) nav.href = exe.browser_download_url;
     })
     .catch(function () {});
 })();
