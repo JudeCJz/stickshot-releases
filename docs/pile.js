@@ -286,7 +286,7 @@
       return [
         ["Blind Duration", "UP TO 3.5 S", 1.0],
         ["Blast Radius", "796 PX", 1.0],
-        ["Fuse Timer", "4.0 S", 1.0],
+        ["Timer", "STARTS ON PRESS", 1.0],
         ["Ammo", "2", 0.33]
       ];
     }
@@ -311,7 +311,7 @@
         ["Damage", "90 / S", 0.90],
         ["Range", "290 PX", 0.58],
         ["Fuel", "5.0 S", 0.62],
-        ["Move Speed", "75%", 0.75]
+        ["Move Speed", "HEAVY", 0.75]
       ];
     }
     if (w.name === "Laser Gun") {
@@ -401,7 +401,7 @@
     } else if (w.reach) {
       list.push(["Reach", w.reach + " PX", Math.min(1.0, w.reach / 80)]);
     } else if (w.move && w.move < 1.0) {
-      list.push(["Move Speed", Math.round(w.move * 100) + "%", w.move]);
+      list.push(["Move Speed", "HEAVY", w.move]);
     } else if (w.kb) {
       list.push(["Knockback", wordRating(w.kb / 1500), Math.min(1.0, w.kb / 1500)]);
     } else {
@@ -414,7 +414,7 @@
   function fillCard(w) {
     var groups = { gun: "Gun", boom: "Explosive", melee: "Melee & thrown", power: "Power-up" };
     var tagHtml = (w.tag || groups[w.group] || "Power-up");
-    if (w.lucky) tagHtml += "<em>" + (w.luckyTag || "Mystery block only") + "</em>";
+    if (w.lucky) tagHtml += "<em>" + (w.luckyTag || "Mystery Block only") + "</em>";
     document.getElementById("inspect-tag").innerHTML = tagHtml;
     document.getElementById("inspect-name").textContent = w.name;
     document.getElementById("inspect-info").textContent = w.info;
@@ -553,14 +553,20 @@
     .then(function (list) {
       var rel = list.filter(function (r) { return !r.draft && !r.prerelease; })[0];
       if (!rel) return;
-      var apk = (rel.assets || []).filter(function (a) { return /\.apk$/i.test(a.name); })[0];
+      var assets = rel.assets || [];
+      var apk = assets.filter(function (a) { return /\.apk$/i.test(a.name); })[0];
+      var exe = assets.filter(function (a) { return /^Stickshot-Setup.*\.exe$/i.test(a.name); })[0] ||
+                assets.filter(function (a) { return /\.exe$/i.test(a.name); })[0];
+      function mb(a) { return Math.round(a.size / 1048576) + " MB"; }
       document.querySelectorAll(".js-ver").forEach(function (v) { v.textContent = rel.tag_name; });
-      var exe = (rel.assets || []).filter(function (a) { return /\.exe$/i.test(a.name); })[0];
-      if (apk) document.querySelectorAll(".js-download").forEach(function (a) { a.href = apk.browser_download_url; });
-      if (exe) document.querySelectorAll(".js-download-win").forEach(function (a) { a.href = exe.browser_download_url; });
-      // (the top bar's one button: the installer on a Windows computer, else the APK)
-      var nav = document.querySelector(".nav-dl");
-      if (nav && exe && /Windows/i.test(navigator.userAgent)) nav.href = exe.browser_download_url;
+      if (apk) {
+        document.querySelectorAll("[data-dl='apk']").forEach(function (a) { a.href = apk.browser_download_url; });
+        document.querySelectorAll(".js-size-apk").forEach(function (s) { s.textContent = mb(apk); });
+      }
+      if (exe) {
+        document.querySelectorAll("[data-dl='win']").forEach(function (a) { a.href = exe.browser_download_url; });
+        document.querySelectorAll(".js-size-win").forEach(function (s) { s.textContent = mb(exe); });
+      }
     })
     .catch(function () {});
 })();

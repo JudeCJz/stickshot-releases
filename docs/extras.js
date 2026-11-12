@@ -60,11 +60,12 @@
   // ---------- mystery block ----------
   // Roll weights match LUCKY_ITEMS in scripts/game.gd; odds are deliberately never shown on the page.
   var ITEMS = [
-    { name: "Homing Grace", img: "homing_grace", w: 3, info: "Your shots curve into enemies for 3 seconds." },
+    { name: "Homing Grace", img: "homing_grace", w: 3, info: "Fills your homing bar: shots and throws curve into enemies with a golden trail." },
     { name: "Invisible", img: "power_invisible", w: 3, info: "Vanish for 8 seconds. Everyone else only sees your weapon floating around." },
-    { name: "Flamethrower", img: "weapon_flamethrower", w: 2.5, info: "Hold to spray fire at close range. You can only get it from a mystery block." },
+    { name: "Flamethrower", img: "weapon_flamethrower", w: 2.5, info: "Hold to spray fire at close range. You can only get it from a Mystery Block." },
     { name: "Totem of Life", img: "totem_of_life", w: 1.5, info: "Cheat death once: instead of dying you come back with 50 HP." },
-    { name: "Laser Gun", img: "weapon_laser_gun", w: 0.8, info: "Charge a beam that goes through walls and hits everyone in its line. Only from a mystery block." }
+    { name: "Laser Gun", img: "weapon_laser_gun", w: 0.8, info: "Charge a beam that goes through walls and hits everyone in its line. Only from a Mystery Block." },
+    { name: "Briefcase", img: "weapon_briefcase", w: 1.5, info: "Hold to shield yourself. Throw it and it homes on the nearest enemy, pathing around walls. Only from a Mystery Block." }
   ];
   var total = ITEMS.reduce(function (s, it) { return s + it.w; }, 0);
   ITEMS.forEach(function (it) { new Image().src = "assets/" + it.img + ".png"; });
@@ -473,7 +474,6 @@
       "Cluster Grenade": 0.8,
       "Impact Grenade": 0.8,
       "Fire Grenade": 0.8,
-      "Black Hole Grenade": 0.7,
       "Coco Launcher": 1.0,
       "Nuke Launcher": 0.5,
       "Mine Layer": 0.9,
