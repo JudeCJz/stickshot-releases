@@ -19,15 +19,16 @@
 </head>
 <body class="pile-page site">
 
+<div class="bg-wallpaper" id="bg-wallpaper" aria-hidden="true"></div>
+
 <div class="flashbang-screen" id="flashbang-screen" aria-hidden="true"></div>
 
 <header class="topbar" id="topbar">
   <a class="brand" href="#top"><img src="assets/app_icon.png" alt=""><span>STICKSHOT</span></a>
-  <a class="btn btn-red btn-sm js-download" href="#play">Get the game</a>
+  <a class="btn btn-red btn-sm js-download" href="#top">Get the game</a>
 </header>
 
 <section class="s-hero" id="top">
-  <div class="s-hero-art" aria-hidden="true"></div>
   <div class="s-hero-inner">
     <h1 class="s-hero-logo"><img src="assets/logo_title.png" alt="Stickshot"></h1>
     <p class="s-hero-line">Ragdoll stick fights with your friends. Android, Windows and the browser all play in the same games, with snappy controls that feel like zero delay.</p>
@@ -45,109 +46,8 @@
         <span>Play in browser</span>
       </a>
     </div>
-    <p class="s-hero-meta"><b class="js-ver">Latest version</b> · Free · No account · Cross-play on every platform</p>
-    <ul class="s-chips" aria-label="Highlights">
-      <li>Cross-play</li>
-      <li>Online multiplayer</li>
-      <li>Wi-Fi LAN</li>
-      <li>Up to 16 players</li>
-      <li>Voice and quick chat</li>
-    </ul>
+    <p class="s-hero-meta"><b class="js-ver">Latest version</b> · Free · No account</p>
   </div>
-</section>
-
-<!-- PLATFORMS: three ways to play, all cross-play -->
-<section class="sect plat-sect" id="play">
-  <div class="head2"><span class="eyebrow">Cross-play</span><h2>One game, three ways to play</h2></div>
-  <p class="sect-lead">Phone, PC or browser: everyone joins the same lobbies. Host on one, join from any other, up to 16 fighters.</p>
-  <div class="plats">
-    <div class="plat">
-      <svg class="ic plat-ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
-      <h3>Android</h3>
-      <p class="plat-sub">APK for phones and tablets<span> · <span class="js-size-apk">free</span></span></p>
-      <ul class="plat-modes">
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>Online</li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h.01M2 8.82a15 15 0 0 1 20 0M5 12.86a10 10 0 0 1 14 0M8.5 16.43a5 5 0 0 1 7 0"/></svg>Wi-Fi LAN</li>
-      </ul>
-      <a class="btn btn-red plat-btn" data-dl="apk" href="https://github.com/JudeCJz/stickshot-releases/releases/latest">
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg><span>Download APK</span>
-      </a>
-    </div>
-    <div class="plat">
-      <svg class="ic plat-ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      <h3>Windows</h3>
-      <p class="plat-sub">Installer, no admin needed<span> · <span class="js-size-win">free</span></span></p>
-      <ul class="plat-modes">
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>Online</li>
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h.01M2 8.82a15 15 0 0 1 20 0M5 12.86a10 10 0 0 1 14 0M8.5 16.43a5 5 0 0 1 7 0"/></svg>Wi-Fi LAN</li>
-      </ul>
-      <a class="btn btn-red plat-btn" data-dl="win" href="https://github.com/JudeCJz/stickshot-releases/releases/latest">
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg><span>Download installer</span>
-      </a>
-    </div>
-    <div class="plat">
-      <svg class="ic plat-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
-      <h3>Browser</h3>
-      <p class="plat-sub">Nothing to install, PC or phone</p>
-      <ul class="plat-modes">
-        <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>Online</li>
-      </ul>
-      <a class="btn btn-glass plat-btn" href="https://judecjz.github.io/stickshot-play/">
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span>Play now</span>
-      </a>
-    </div>
-  </div>
-  <p class="plat-note">
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 7l4 4M4 7h16M16 21l4-4-4-4M20 17H4"/></svg>
-    <span><b>Every platform plays every other.</b> Online games mix Android, Windows and browser players. On the same Wi-Fi, Android and Windows also find each other with no internet needed. <b class="js-ver">Latest version</b> on all three.</span>
-  </p>
-</section>
-
-<!-- WHAT'S NEW -->
-<section class="sect new-sect" id="new">
-  <div class="head2"><span class="eyebrow">Latest updates</span><h2>What's new</h2></div>
-  <ul class="news">
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-      <div><h3>The Briefcase</h3><p>A Mystery Block exclusive. Hold it up as a bulletproof shield, or throw it and watch it spin after the nearest enemy, pathing around walls.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M22 12h-4M6 12H2M12 6V2M12 22v-4"/></svg>
-      <div><h3>Shoot down the Briefcase</h3><p>A homing Briefcase coming your way? Any weapon can knock it out of the air: guns, fire, blasts, a swing or a throw.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></svg>
-      <div><h3>Golden homing trail</h3><p>Anything homing leaves a short gold trail, so you can see it curving in.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="10" x="2" y="7" rx="2"/><path d="M22 11v2M6 11v2M10 11v2"/></svg>
-      <div><h3>Homing Grace bar</h3><p>Homing Grace now fills a bar next to your ammo. Each shot or throw that homes uses some of it.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
-      <div><h3>Camera zoom slider</h3><p>Settings &rsaquo; Camera lets you zoom in or out, and keeps your fighter near the middle of the screen.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
-      <div><h3>No-holes terrain</h3><p>Procedural maps can now use solid ground across the whole map, with no pits to fall through.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      <div><h3>Windows app</h3><p>A full desktop version with its own installer, Start Menu and Desktop shortcuts, and a clean uninstall.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
-      <div><h3>Voice and quick chat</h3><p>Talk to the lobby with voice chat, or fire off a quick chat line mid-fight.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-      <div><h3>Profiles</h3><p>Set your name and pick your two colours from Profile on the main menu.</p></div>
-    </li>
-    <li>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 7l4 4M4 7h16M16 21l4-4-4-4M20 17H4"/></svg>
-      <div><h3>Cross-play</h3><p>Android, Windows and browser players all meet in the same online games, and the two apps also link up over local Wi-Fi.</p></div>
-    </li>
-  </ul>
 </section>
 
 <section class="armory-box" id="armory">
@@ -342,16 +242,6 @@
       <summary>Voice chat doesn't hear me</summary>
       <p>Allow the microphone when the game asks. Settings › Voice &amp; chat › Mic test shows a bar that moves when you speak.</p>
     </details>
-  </div>
-</section>
-
-<section class="sect cta-end">
-  <h2>Ready to fight?</h2>
-  <p class="cta-note" style="margin: 0 0 20px; font-weight: 600; color: var(--soft);">Android, Windows and browser all play together · Online for everyone · Wi-Fi LAN on Android and Windows</p>
-  <div class="s-hero-cta s-hero-cta3">
-    <a class="btn btn-red btn-big js-download" data-dl="apk" href="https://github.com/JudeCJz/stickshot-releases/releases/latest"><span>Android</span></a>
-    <a class="btn btn-glass btn-big" data-dl="win" href="https://github.com/JudeCJz/stickshot-releases/releases/latest"><span>Windows</span></a>
-    <a class="btn btn-glass btn-big" href="https://judecjz.github.io/stickshot-play/"><span>Play in browser</span></a>
   </div>
 </section>
 

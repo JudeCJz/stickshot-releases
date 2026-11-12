@@ -3,7 +3,6 @@
   var bar = document.getElementById("topbar");
   var topbarBtn = bar ? bar.querySelector(".js-download") : null;
   var heroBtn = document.querySelector(".s-hero .js-download");
-  var endBtn = document.querySelector(".cta-end .js-download");
 
   function update() {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
@@ -20,24 +19,8 @@
         heroVisible = heroRect.bottom > barHeight && heroRect.top < window.innerHeight;
       }
 
-      var endVisible = false;
-      if (endBtn) {
-        var endRect = endBtn.getBoundingClientRect();
-        // The bottom CTA button is visible if any part of it is in the viewport
-        endVisible = endRect.top < window.innerHeight && endRect.bottom > barHeight;
-      }
-
-      // Show topbar button only after the hero button has hidden completely,
-      // and hide it if the bottom CTA button comes into view
-      // so there is never more than 1 download button visible on screen at a time.
-      // The platform downloads section counts too.
-      var platVisible = false;
-      var plats = document.querySelector(".plats");
-      if (plats) {
-        var pr = plats.getBoundingClientRect();
-        platVisible = pr.top < window.innerHeight && pr.bottom > barHeight;
-      }
-      var showTopbarBtn = !heroVisible && !endVisible && !platVisible;
+      // Show the topbar button only once the hero button has scrolled away.
+      var showTopbarBtn = !heroVisible;
       topbarBtn.classList.toggle("is-visible", showTopbarBtn);
     }
   }

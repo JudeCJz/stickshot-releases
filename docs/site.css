@@ -58,34 +58,32 @@
   margin-top: -64px; padding: 112px var(--gutter) 72px;
   overflow: hidden;
 }
-.s-hero-art {
-  position: absolute; top: 0; bottom: 0; right: 0; left: 32%;
-  background: url("assets/menu_bg.jpg") 85% center / cover no-repeat;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 38%);
+.s-hero-inner {
+  position: relative; width: 100%; max-width: var(--wrap); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr minmax(260px, 320px); column-gap: 56px; align-items: center;
 }
-.s-hero-art::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(0deg, var(--bg) 0%, rgba(11, 11, 14, 0) 35%);
-}
-.s-hero-inner { position: relative; width: 100%; max-width: var(--wrap); margin: 0 auto; }
+.s-hero-logo, .s-hero-line, .s-hero-meta { grid-column: 1; }
 .s-hero-logo { margin: 0 0 18px; line-height: 0; }
 .s-hero-logo img { width: min(78vw, 470px); height: auto; filter: drop-shadow(0 10px 24px rgba(0, 0, 0, .55)); }
 .s-hero-line { max-width: 520px; margin: 0 0 28px; font-size: clamp(17px, 1.8vw, 21px); line-height: 1.5; font-weight: 600; color: var(--soft); }
 .s-hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
+/* hero downloads: a vertical stack in the right column */
+.s-hero .s-hero-cta { grid-column: 2; grid-row: 1 / span 3; flex-direction: column; flex-wrap: nowrap; }
+.s-hero .s-hero-cta .btn { width: 100%; justify-content: center; }
+.s-hero-line { margin-bottom: 0; }
 .s-hero-meta { margin: 16px 0 0; font-size: 14px; font-weight: 700; color: var(--muted); }
 .s-hero-meta b { color: var(--red-hi); }
-.s-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; }
-.s-chips li {
-  padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 700;
-  background: rgba(255, 255, 255, .07); border: 1px solid var(--edge); color: rgba(255, 255, 255, .86);
+@media (max-width: 860px) {
+  .s-hero-inner { display: block; }
+  .s-hero-line { margin-bottom: 28px; }
+  .s-hero .s-hero-cta { max-width: 420px; }
 }
 @media (max-width: 640px) {
   .s-hero { min-height: 0; padding-top: 96px; text-align: center; }
-  .s-hero-art { left: 0; opacity: .35; -webkit-mask-image: none; mask-image: none; background-position: 85% center; }
   .s-hero-logo img { margin: 0 auto; }
   .s-hero-line { margin-left: auto; margin-right: auto; }
-  .s-hero-cta, .s-chips { justify-content: center; }
+  .s-hero-cta { justify-content: center; }
+  .s-hero .s-hero-cta { margin: 0 auto; }
   .s-hero-cta .btn { width: 100%; justify-content: center; }
   .site .btn-big { font-size: 18px; padding-top: 16px; padding-bottom: 16px; }
 }
@@ -98,7 +96,6 @@
 
 /* the interactive parts keep their look, with the new spacing */
 .site .box-head, .site .sect-head { display: none; }
-.site .bg-wallpaper { display: none; }
 
 /* help */
 .faq { display: grid; gap: 10px; }
@@ -110,9 +107,6 @@
 .faq details p { margin: 0 0 18px; color: var(--muted); font-weight: 600; font-size: 15px; line-height: 1.55; }
 
 /* closing call */
-.cta-end { text-align: center; padding-top: 80px !important; padding-bottom: 80px !important; }
-.cta-end h2 { margin: 0 0 22px; font-size: clamp(30px, 4.5vw, 48px); font-weight: 900; }
-.cta-end .s-hero-cta { justify-content: center; }
 
 /* footer */
 .site .foot { border-top: 1px solid var(--edge); background: transparent; }
