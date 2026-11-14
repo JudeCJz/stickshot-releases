@@ -65,7 +65,7 @@
     { name: "Flamethrower", img: "weapon_flamethrower", w: 2.5, info: "Hold to spray fire at close range. You can only get it from a Mystery Block." },
     { name: "Totem of Life", img: "totem_of_life", w: 1.5, info: "Cheat death once: instead of dying you come back with 50 HP." },
     { name: "Laser Gun", img: "weapon_laser_gun", w: 0.8, info: "Charge a beam that goes through walls and hits everyone in its line. Only from a Mystery Block." },
-    { name: "Briefcase", img: "weapon_briefcase", w: 1.5, info: "Hold to shield yourself. Throw it and it homes on the nearest enemy, pathing around walls. Only from a Mystery Block." }
+    { name: "Briefcase", img: "weapon_briefcase", w: 1.5, info: "Hold it up as a shield, but it wears out and blows up in your hand if it soaks too much. Throw it and it locks on to the farthest enemy, pathing around walls. Only from a Mystery Block." }
   ];
   var total = ITEMS.reduce(function (s, it) { return s + it.w; }, 0);
   ITEMS.forEach(function (it) { new Image().src = "assets/" + it.img + ".png"; });
